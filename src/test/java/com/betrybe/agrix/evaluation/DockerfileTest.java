@@ -63,7 +63,7 @@ class DockerfileTest {
   }
 
   @Test
-  @DisplayName("08 - Dockerfile da aplicação")
+  @DisplayName("8- Crie um Dockerfile para sua aplicação")
   void testDockerfileConfiguredCorrectly() {
     // Tests about build-image
     assertAtLeastOneCommandMatch((dc) -> (

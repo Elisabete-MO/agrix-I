@@ -50,7 +50,7 @@ class FarmManagementTest {
   }
 
   @Test
-  @DisplayName("01 - Rota POST /farms")
+  @DisplayName("1- Crie uma API para controle de fazendas com a rota POST /farms")
   void testFarmCreation() throws Exception {
     MockFarm farm = new MockFarm(FarmFixtures.farm1);
 
@@ -79,7 +79,7 @@ class FarmManagementTest {
   }
 
   @Test
-  @DisplayName("02 - Rota GET /farms")
+  @DisplayName("2- Crie a rota GET /farms")
   void testGetAllFarms() throws Exception {
     Set<MockFarm> farms = Set.of(FarmFixtures.farm1, FarmFixtures.farm2, FarmFixtures.farm3);
     Set<MockFarm> expectedFarms = new HashSet<>();
@@ -105,7 +105,7 @@ class FarmManagementTest {
   }
 
   @Test
-  @DisplayName("03 - Rota GET /farm/{id}")
+  @DisplayName("3- Crie a rota GET /farms/{id}")
   void testGetFarm() throws Exception {
     testGetFarmSuccess();
     testGetFarmNotFound();

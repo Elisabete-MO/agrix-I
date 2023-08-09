@@ -55,7 +55,7 @@ class CropManagementTest {
   }
 
   @Test
-  @DisplayName("04 - Rota POST /farms/{farmId}/crops")
+  @DisplayName("4- Crie a rota POST /farms/{farmId}/crops")
   void testCropCreation() throws Exception {
     testCropCreationSuccess();
     testCropCreationFarmNotFound();
@@ -93,7 +93,7 @@ class CropManagementTest {
   }
 
   @Test
-  @DisplayName("05 - Rota GET /farms/{farmId}/crops")
+  @DisplayName("5- Crie a rota GET /farms/{farmId}/crops")
   void testGetFarmCrops() throws Exception {
     testGetFarmCropsEmpty();
     testGetFarmCropsSuccess();
@@ -157,7 +157,7 @@ class CropManagementTest {
   }
 
   @Test
-  @DisplayName("06 - Rota GET /crops")
+  @DisplayName("6- Crie a rota GET /crops")
   void testGetAllCrops() throws Exception {
     Map<MockFarm, List<MockCrop>> farmsCrops = Map.of(
         FarmFixtures.farm1, List.of(
@@ -200,7 +200,7 @@ class CropManagementTest {
   }
 
   @Test
-  @DisplayName("07 - Rota GET /crops/{id}")
+  @DisplayName("7- Crie a rota GET /crops/{id}")
   void testGetCrop() throws Exception {
     testGetCropSuccess();
     testGetCropNotFound();
