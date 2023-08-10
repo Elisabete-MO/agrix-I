@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AgrixApplication {
 
   public static void main(String[] args) {
+
     SpringApplication.run(AgrixApplication.class, args);
   }
 
