@@ -4,7 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Farm entity.
@@ -19,15 +23,10 @@ public class Farm {
 
   private String name;
 
-  public Double getSize() {
-    return size;
-  }
-
-  public void setSize(Double size) {
-    this.size = size;
-  }
-
   private Double size;
+
+  @OneToMany(mappedBy = "farm")
+  private List<Crop> crops = new ArrayList<>();
 
   public Farm() {
   }
@@ -37,11 +36,13 @@ public class Farm {
    * @param id identifier of the crop
    * @param name name of the crop
    * @param size area's size of the farm
+   * @param crops list of crops
    */
-  public Farm(Integer id, String name, Double size) {
+  public Farm(Integer id, String name, Double size, List<Crop> crops) {
     this.id = id;
     this.name = name;
     this.size = size;
+    this.crops = crops;
   }
 
   public Integer getId() {
@@ -60,4 +61,16 @@ public class Farm {
     this.name = name;
   }
 
+  public Double getSize() {
+    return size;
+  }
+
+  public void setSize(Double size) {
+    this.size = size;
+  }
+
+  public void addCrop(Crop crop) {
+    crops.add(crop);
+    crop.setFarm(this);
+  }
 }
