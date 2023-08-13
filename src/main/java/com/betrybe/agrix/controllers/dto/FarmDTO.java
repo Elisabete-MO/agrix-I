@@ -1,9 +1,12 @@
 package com.betrybe.agrix.controllers.dto;
 
+import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 
-public record FarmDTO(Integer id, String name, Double size) {
+import java.util.List;
+
+public record FarmDTO(Integer id, String name, Double size, List<Crop> crops) {
   public Farm toFarm() {
-    return new Farm(id, name, size);
+    return new Farm(id, name, size, crops);
   }
 }
