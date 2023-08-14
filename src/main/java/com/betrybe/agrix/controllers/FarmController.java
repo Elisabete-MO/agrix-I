@@ -1,6 +1,10 @@
 package com.betrybe.agrix.controllers;
 
+import com.betrybe.agrix.controllers.dto.CropDto;
 import com.betrybe.agrix.controllers.dto.FarmDto;
+import com.betrybe.agrix.models.entities.Crop;
+import com.betrybe.agrix.models.entities.Farm;
+import com.betrybe.agrix.services.CropService;
 import com.betrybe.agrix.services.FarmService;
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/farms")
 public class FarmController {
 
+  private final CropService cropService;
   private final FarmService farmService;
 
   @Autowired
-  public FarmController(FarmService farmService) {
+  public FarmController(FarmService farmService, CropService cropService) {
+    this.cropService = cropService;
     this.farmService = farmService;
   }
 
@@ -51,6 +57,22 @@ public class FarmController {
     Optional<FarmDto> optionalFarm = farmService.getFarmById(id);
     return ResponseEntity.ok(optionalFarm);
   }
+
+  /** Creates a new crop.
+   *
+   * @param cropDto   DTO with the crop data.
+   * @param farmId   Farm that the crop belongs to.
+   * @return The crop created.
+   */
+  @PostMapping("/{farmId}/crops")
+  public ResponseEntity<CropDto> createCrop(
+      @RequestBody CropDto cropDto, @PathVariable Integer farmId) {
+    Optional<FarmDto> optionalFarm = farmService.getFarmById(farmId);
+    CropDto insertedCrop = cropService.insertCrop(cropDto, optionalFarm.get().toFarm());
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(insertedCrop);
+  }
+
 
   //  @PutMapping("/{farmId}")
   //  public ResponseEntity<ResponseDTO<Farm>> updateFarm(
@@ -81,21 +103,4 @@ public class FarmController {
   //    ResponseDTO<Farm> responseDTO = new ResponseDTO<>("Marca removida com sucesso!", null);
   //    return ResponseEntity.ok(responseDTO);
   //  }
-  //
-  //
-  //
-  //  @PostMapping("/{farmId}/crops/")
-  //  public ResponseEntity<ResponseDTO<Crop>> createCrop(
-  //      @RequestBody Crop CropDto, @PathVariable Integer farmId) {
-  //    Optional<Farm> optionalFarm = farmService.getFarmById(farmId);
-  //    if (optionalFarm.isEmpty()) {
-  //      ResponseDTO<Farm> responseDTO = new ResponseDTO<>(
-  //          "Fazenda não encontrada!", null);
-  //      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDTO);
-  //    }
-  //
-  //    Crop newCrop = CropService.insertCrop(CropDTO.toCrop());
-  //    ResponseDTO<Crop> responseDTO = new ResponseDTO<>(
-  //        null, newCrop);
-  //    return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO); }
 }

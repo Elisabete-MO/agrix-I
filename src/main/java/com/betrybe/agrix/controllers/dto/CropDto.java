@@ -3,15 +3,20 @@ package com.betrybe.agrix.controllers.dto;
 import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 
-/** Crop DTO.
+/**
+ * Crop DTO.
  *
- * @param id identifier of the crop
- * @param farm identifier of the farm
- * @param name name of the crop
+ * @param id          identifier of the crop
+ * @param name        name of the crop
  * @param plantedArea area planted with the crop
  */
-public record CropDto(int id, Farm farm, String name, Double plantedArea) {
-  public Crop toCrop() {
-    return new Crop(id, farm, name, plantedArea);
+public record CropDto(int id, String name, Double plantedArea, Integer farmId) {
+  public Crop toCrop(Farm farm) {
+    return new Crop(id(), farm, name(), plantedArea());
+  }
+
+  public static CropDto fromCrop(Crop crop) {
+    return new CropDto(crop.getId(), crop
+        .getName(), crop.getPlantedArea(), crop.getFarm().getId());
   }
 }

@@ -1,26 +1,37 @@
-//package com.betrybe.agrix.services;
-//
-//import com.betrybe.agrix.models.entities.Crop;
-//import com.betrybe.agrix.models.repositories.CropRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//import java.util.Optional;
-//
-//@Service
-//public class CropService {
-//  private final CropRepository cropRepository;
-//
-//  @Autowired
-//  public CropService(CropRepository cropRepository) {
-//    this.cropRepository = cropRepository;
-//  }
-//
-//  public Crop insertCrop(Crop crop) {
-//    return cropRepository.save(crop);
-//  }
-//
+package com.betrybe.agrix.services;
+
+import com.betrybe.agrix.controllers.dto.CropDto;
+import com.betrybe.agrix.models.entities.Crop;
+import com.betrybe.agrix.models.entities.Farm;
+import com.betrybe.agrix.models.repositories.CropRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * Service for the Crop entity.
+ */
+@Service
+public class CropService {
+  private final CropRepository cropRepository;
+
+  @Autowired
+  public CropService(CropRepository cropRepository) {
+    this.cropRepository = cropRepository;
+  }
+
+  /** Creates a new crop.
+   *
+   * @param cropDto  DTO with the crop data.
+   * @param farm    Farm that the crop belongs to.
+   * @return The crop created.
+   */
+  public CropDto insertCrop(CropDto cropDto, Farm farm) {
+    Crop crop = cropDto.toCrop(farm);
+    Crop insertedCrop = cropRepository.save(crop);
+    return CropDto.fromCrop(insertedCrop);
+  }
+}
+
 //  public Optional<Crop> updateCrop(Integer id, Crop crop) {
 //    Optional<Crop> optionalCrop = cropRepository.findById(id);
 //
@@ -50,4 +61,3 @@
 //  public List<Crop> getAllCrops() {
 //    return cropRepository.findAll();
 //  }
-//}
