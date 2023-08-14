@@ -45,6 +45,19 @@ public class CropService {
         e.getPlantedArea(),
         e.getFarm().getId())).toList();
   }
+
+  /** Gets all the crops.
+   *
+   * @return A list with all the crops.
+   */
+  public List<CropDto> getAllCrops() {
+    List<Crop> crops = cropRepository.findAll();
+    return crops.stream().map(e -> new CropDto(
+        e.getId(),
+        e.getName(),
+        e.getPlantedArea(),
+        e.getFarm().getId())).toList();
+  }
 }
 
 //  public Optional<Crop> updateCrop(Integer id, Crop crop) {

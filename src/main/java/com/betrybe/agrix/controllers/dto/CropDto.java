@@ -9,6 +9,7 @@ import com.betrybe.agrix.models.entities.Farm;
  * @param id          identifier of the crop
  * @param name        name of the crop
  * @param plantedArea area planted with the crop
+ * @param farmId      identifier of the farm that the crop belongs to
  */
 public record CropDto(int id, String name, Double plantedArea, Integer farmId) {
   public Crop toCrop(Farm farm) {
