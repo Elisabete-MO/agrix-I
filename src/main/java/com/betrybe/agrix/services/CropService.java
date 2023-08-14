@@ -4,6 +4,7 @@ import com.betrybe.agrix.controllers.dto.CropDto;
 import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.models.repositories.CropRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,20 @@ public class CropService {
     Crop crop = cropDto.toCrop(farm);
     Crop insertedCrop = cropRepository.save(crop);
     return CropDto.fromCrop(insertedCrop);
+  }
+
+  /** Gets all the crops of a farm.
+   *
+   * @param farmId The farm id.
+   * @return A list with all the crops of the farm.
+   */
+  public List<CropDto> getAllCropsByFarmId(Integer farmId) {
+    List<Crop> crops = cropRepository.findAllByFarmId(farmId);
+    return crops.stream().map(e -> new CropDto(
+        e.getId(),
+        e.getName(),
+        e.getPlantedArea(),
+        e.getFarm().getId())).toList();
   }
 }
 
@@ -58,6 +73,4 @@ public class CropService {
 //    return cropRepository.findById(id);
 //  }
 //
-//  public List<Crop> getAllCrops() {
-//    return cropRepository.findAll();
-//  }
+

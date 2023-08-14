@@ -73,7 +73,11 @@ public class FarmController {
     return ResponseEntity.status(HttpStatus.CREATED).body(insertedCrop);
   }
 
-
+  @GetMapping("/{farmId}/crops")
+  public ResponseEntity<List<CropDto>> getAllCrops(@PathVariable Integer farmId) {
+    Optional<FarmDto> optionalFarm = farmService.getFarmById(farmId);
+    return ResponseEntity.ok(cropService.getAllCropsByFarmId(farmId));
+  }
   //  @PutMapping("/{farmId}")
   //  public ResponseEntity<ResponseDTO<Farm>> updateFarm(
   //      @PathVariable Long farmId, @RequestBody FarmDTO farmDTO) {
