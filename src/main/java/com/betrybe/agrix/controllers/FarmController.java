@@ -2,8 +2,6 @@ package com.betrybe.agrix.controllers;
 
 import com.betrybe.agrix.controllers.dto.CropDto;
 import com.betrybe.agrix.controllers.dto.FarmDto;
-import com.betrybe.agrix.models.entities.Crop;
-import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.services.CropService;
 import com.betrybe.agrix.services.FarmService;
 import java.util.List;
@@ -78,33 +76,4 @@ public class FarmController {
     Optional<FarmDto> optionalFarm = farmService.getFarmById(farmId);
     return ResponseEntity.ok(cropService.getAllCropsByFarmId(farmId));
   }
-  //  @PutMapping("/{farmId}")
-  //  public ResponseEntity<ResponseDTO<Farm>> updateFarm(
-  //      @PathVariable Long farmId, @RequestBody FarmDTO farmDTO) {
-  //    Optional<Farm> optionalFarm = farmService.updateFarm(farmId, farmDTO.toFarm());
-  //
-  //    if (optionalFarm.isEmpty()) {
-  //      ResponseDTO<Farm> responseDTO = new ResponseDTO<>(
-  //          String.format("Não foi encontrada a marca de ID %d", farmId), null);
-  //      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDTO);
-  //    }
-  //
-  //    ResponseDTO<Farm> responseDTO = new ResponseDTO<>(
-  //        "Marca atualizada com sucesso!", optionalFarm.get());
-  //    return ResponseEntity.ok(responseDTO);
-  //  }
-  //
-  //  @DeleteMapping("/{farmId}")
-  //  public ResponseEntity<ResponseDTO<Farm>> removeFarmById(@PathVariable Long farmId) {
-  //    Optional<Farm> optionalFarm = farmService.removeFarmById(farmId);
-  //
-  //    if (optionalFarm.isEmpty()) {
-  //      ResponseDTO<Farm> responseDTO = new ResponseDTO<>(
-  //          String.format("Não foi encontrada a marca de ID %d", farmId), null);
-  //      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDTO);
-  //    }
-  //
-  //    ResponseDTO<Farm> responseDTO = new ResponseDTO<>("Marca removida com sucesso!", null);
-  //    return ResponseEntity.ok(responseDTO);
-  //  }
 }

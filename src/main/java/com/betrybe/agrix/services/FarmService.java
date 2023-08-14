@@ -48,28 +48,4 @@ public class FarmService {
         .map(Optional::of)
         .orElseThrow(() -> new FarmNotFoundException("Fazenda não encontrada!"));
   }
-
-  //  public Optional<Farm> updateFarm(Integer id, Farm farm) {
-  //    Optional<Farm> optionalFarm = farmRepository.findById(id);
-  //
-  //    if (optionalFarm.isPresent()) {
-  //      Farm farmFromDB = optionalFarm.get();
-  //      farmFromDB.setName(farm.getName());
-  //
-  //      Farm updatedFarm = farmRepository.save(farmFromDB);
-  //      return Optional.of(updatedFarm);
-  //    }
-  //    return farmRepository.save(farmFromDB)
-  //    .OrElseThrow(() -> new FarmNotFoundException("Fazenda não encontrada!"));
-  //  }
-  //
-  //  public Optional<Farm> removeFarmById(Integer id) {
-  //    Optional<Farm> farmOptional = farmRepository.findById(id);
-  //
-  //    if(farmOptional.isPresent()) {
-  //      farmRepository.deleteById(id);
-  //    }
-  //    return farmOptional;
-  //  }
-  //
 }
