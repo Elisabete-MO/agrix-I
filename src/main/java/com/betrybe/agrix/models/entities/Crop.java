@@ -36,7 +36,7 @@ public class Crop {
    * Crop constructor.
    *
    * @param id          identifier of the crop
-   * @param idFarm     identifier of the farm
+   * @param farm     farm where the crop is planted
    * @param name        name of the crop
    * @param plantedArea area planted with the crop
    */

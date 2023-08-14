@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +71,9 @@ public class Farm {
   public void addCrop(Crop crop) {
     crops.add(crop);
     crop.setFarm(this);
+  }
+
+  public List<Crop> getCrops() {
+    return crops;
   }
 }
